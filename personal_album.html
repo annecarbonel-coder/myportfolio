@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Album</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #87CEEB; /* Matching Sky Blue */
+            font-family: 'Fredoka One', cursive;
+            margin: 0;
+            padding: 40px 20px;
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            background-color: white;
+            color: purple;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 4px solid #222;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            color: white;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        /* Container for all 16 photos */
+        .album-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1400px;
+            padding: 20px;
+        }
+
+        /* Floating Animation */
+        @keyframes floatAlbum {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 180px; /* Uniform square size */
+            height: 180px;
+            perspective: 1000px;
+            animation: floatAlbum 4s ease-in-out infinite;
+        }
+
+        /* Offset floating for natural look */
+        .flip-card:nth-child(even) { animation-delay: 0.7s; }
+        .flip-card:nth-child(3n) { animation-delay: 1.5s; }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Popping Effect */
+        @keyframes popSquare {
+            0% { transform: scale(1) rotateY(var(--rot)); }
+            50% { transform: scale(1.2) rotateY(var(--rot)); }
+            100% { transform: scale(1) rotateY(var(--rot)); }
+        }
+
+        .popping {
+            animation: popSquare 0.4s ease-out;
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            border: 4px solid white;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flip-card-back {
+            background-color: #ffcc00; /* Woodstock Yellow */
+            color: #333;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 4px solid #222;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .back-link {
+            margin-top: 50px;
+            background: #ff4500;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 20px;
+            border: 3px solid #222;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: #ff6347;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1><ins>⋅˚₊‧ ୨୧ ‧₊˚ ⋅Personal Album⋅˚₊‧ ୨୧ ‧₊˚ ⋅</ins></h1>
+    <div class="divider">──── ୨୧ ──────── ୨୧ ──────── ୨୧ ────</div>
+
+    <div class="album-grid">
+        
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\55.jpg">
+                </div>
+                <div class="flip-card-back">Memories ✨</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\Pbaby pic.jpg">
+                </div>
+                <div class="flip-card-back">Little Anne 🍼</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\b4.jpg">
+                </div>
+                <div class="flip-card-back">Best Times 📸</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\Screenshot_20241129-165027_Gallery.jpg">
+                </div>
+                <div class="flip-card-back">Gallery Peek 🎀</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\1726972830893.jpg">
+                </div>
+                <div class="flip-card-back">Smile! 😁</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\b3.jpg">
+                </div>
+                <div class="flip-card-back">Love this! ❤️</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\b5.jpg">
+                </div>
+                <div class="flip-card-back">Vibes 🌊</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\b1.jpg">
+                </div>
+                <div class="flip-card-back">Anne ୨୧</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\b2.jpg">
+                </div>
+                <div class="flip-card-back">Captured 🎞️</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\l4.jpg">
+                </div>
+                <div class="flip-card-back">Looking Up ☁️</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\l2.jpg">
+                </div>
+                <div class="flip-card-back">Sweet ✨</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\l6.jpg">
+                </div>
+                <div class="flip-card-back">Special Day 🎂</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\l5.jpeg">
+                </div>
+                <div class="flip-card-back">Dreaming 💭</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\l3.jpg">
+                </div>
+                <div class="flip-card-back">My Style 👗</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\l1.jpg">
+                </div>
+                <div class="flip-card-back">Always Me 👤</div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\personal\Pbts.jpg">
+                </div>
+                <div class="flip-card-back">Magic Shop 💜</div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="personal.html" class="back-link">Back</a>
+
+    <script>
+        function popAndFlip(card) {
+            const inner = card.querySelector('.flip-card-inner');
+            inner.classList.remove('popping');
+            void inner.offsetWidth; 
+            
+            const isFlipped = inner.classList.contains('is-flipped');
+            inner.style.setProperty('--rot', isFlipped ? '180deg' : '0deg');
+            
+            inner.classList.add('popping');
+            inner.classList.toggle('is-flipped');
+        }
+    </script>
+
+</body>
+</html>

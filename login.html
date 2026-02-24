@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanuts Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Fredoka One', cursive;
+    background: #87CEEB; /* Sky blue */
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  /* Card Styles */
+  .login-card, .dashboard-card {
+    width: 380px;
+    padding: 30px 40px;
+    background: white; /* Fallback */
+    background: url('card-background.png') no-repeat center/cover, #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    color: #222;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    border: 2px solid rgba(0,0,0,0.1);
+    animation: fadeScaleIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeScaleIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Animation */
+  .snoopy-icon {
+    width: 80px;
+    margin: 0 auto 15px;
+    animation: floatBounce 3s ease-in-out infinite;
+    display: block;
+  }
+
+  @keyframes floatBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* Typography & Inputs */
+  h2 { margin: 0 0 8px 0; color: #333; }
+  p { margin: 0 0 20px 0; font-size: 14px; color: #555; }
+
+  .input-group { position: relative; margin-bottom: 20px; }
+  .input-group input {
+    width: 100%; padding: 12px 10px; border: 2px solid #ddd;
+    border-radius: 12px; font-family: 'Fredoka One', cursive;
+    outline: none; transition: 0.3s;
+  }
+  .input-group input:focus { border-color: #ff4500; }
+  .input-group label {
+    position: absolute; top: -10px; left: 12px;
+    background: white; padding: 0 6px; font-size: 12px; color: #ff4500;
+  }
+
+  /* Buttons */
+  .login-btn {
+    width: 100%; padding: 12px; border: none; border-radius: 12px;
+    background: #ff4500; color: #fff; cursor: pointer;
+    font-family: 'Fredoka One', cursive; transition: 0.3s; margin-top: 10px;
+  }
+  .login-btn:hover { background: #ff6347; transform: translateY(-2px); }
+  .back-btn { background: #ffcc00; color: #333; }
+  .back-btn:hover { background: #ffdb4d; }
+
+  /* Dashboard Grid */
+  .dashboard-card { width: 450px; display: none; }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .category-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .category-box {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #ffcc00;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .category-box span { font-size: 30px; display: block; margin-bottom: 8px; }
+
+  .category-box:hover {
+    transform: scale(1.05);
+    background: #fffdf5;
+    border-color: #ff4500;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  /* Utility */
+  .logout-link {
+    display: inline-block; margin-top: 25px; color: #ff4500; 
+    text-decoration: underline; font-size: 14px; cursor: pointer;
+  }
+  .message { margin-top: 15px; font-size: 14px; display: none; }
+  .success { color: #28a745; }
+  .error { color: #dc3545; }
+</style>
+</head>
+<body>
+
+<div class="login-card" id="loginCard">
+  <img class="snoopy-icon" src="snoopyy.png" alt="Snoopy" />
+  <h2>Login</h2>
+  <p>Welcome back to Peanuts!</p>
+  <div class="input-group">
+    <input type="text" id="username" required />
+    <label>Username</label>
+  </div>
+  <div class="input-group">
+    <input type="password" id="password" required />
+    <label>Password</label>
+  </div>
+  <button class="login-btn" onclick="login()">Login</button>
+  <button class="login-btn back-btn" onclick="showSignup()">Sign Up Instead</button>
+  <div class="message error" id="errorMsg">Invalid username or password.</div>
+</div>
+
+<div class="login-card" id="signupCard" style="display:none;">
+  <img class="snoopy-icon" src="snoopyy.png" alt="Snoopy" />
+  <h2>Sign Up</h2>
+  <p>Join the Peanuts Gang</p>
+  <div class="input-group"><input type="text" id="su_username" required /><label>Username</label></div>
+  <div class="input-group"><input type="password" id="su_password" required /><label>Password</label></div>
+  <div class="input-group"><input type="password" id="su_confirm" required /><label>Confirm Password</label></div>
+  <button class="login-btn" onclick="signup()">Sign Up</button>
+  <button class="login-btn back-btn" onclick="showLogin()">Back to Login</button>
+  <div class="message success" id="signupSuccess">Account created successfully!</div>
+  <div class="message error" id="signupError"></div>
+</div>
+
+<div class="dashboard-card" id="dashboardCard">
+  <img class="snoopy-icon" src="snoopyy.png" alt="Snoopy" style="width: 60px;"/>
+  <h2>Welcome, <span id="displayUser">Friend</span>!</h2>
+  <p>Where would you like to go today?</p>
+  
+  <div class="grid-container">
+    <a href="personal.html" class="category-link">
+      <div class="category-box">
+        <span>👤</span>
+        <div>Personal</div>
+      </div>
+    </a>
+    <a href="education.html" class="category-link">
+      <div class="category-box">
+        <span>📚</span>
+        <div>Educational</div>
+      </div>
+    </a>
+    <a href="collection.html" class="category-link">
+      <div class="category-box">
+        <span>🎨</span>
+        <div>Collection</div>
+      </div>
+    </a>
+    <a href="family.html" class="category-link">
+      <div class="category-box">
+        <span>🏠</span>
+        <div>Family</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="logout-link" onclick="logout()">Not you? Logout</div>
+</div>
+
+<script>
+  // Auth Logic
+  function login() {
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+    const error = document.getElementById("errorMsg");
+    const users = JSON.parse(localStorage.getItem("users")) || { admin: "1234" };
+
+    if (users[user] === pass) {
+      document.getElementById("displayUser").innerText = user;
+      showDashboard();
+    } else {
+      error.style.display = "block";
+    }
+  }
+
+  function signup() {
+    const user = document.getElementById("su_username").value.trim();
+    const pass = document.getElementById("su_password").value.trim();
+    const confirm = document.getElementById("su_confirm").value.trim();
+    const success = document.getElementById("signupSuccess");
+    const error = document.getElementById("signupError");
+
+    error.style.display = "none";
+    if (!user || !pass) {
+      error.innerText = "Please fill all fields!";
+      error.style.display = "block";
+      return;
+    }
+    if (pass !== confirm) {
+      error.innerText = "Passwords don't match!";
+      error.style.display = "block";
+      return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || { admin: "1234" };
+    users[user] = pass;
+    localStorage.setItem("users", JSON.stringify(users));
+    success.style.display = "block";
+    setTimeout(showLogin, 1200);
+  }
+
+  // View Switching
+  function showDashboard() {
+    document.getElementById("loginCard").style.display = "none";
+    document.getElementById("signupCard").style.display = "none";
+    document.getElementById("dashboardCard").style.display = "block";
+  }
+
+  function showSignup() {
+    document.getElementById("loginCard").style.display = "none";
+    document.getElementById("signupCard").style.display = "block";
+  }
+
+  function showLogin() {
+    document.getElementById("signupCard").style.display = "none";
+    document.getElementById("loginCard").style.display = "block";
+    // Clear messages
+    document.getElementById("signupSuccess").style.display = "none";
+    document.getElementById("errorMsg").style.display = "none";
+  }
+
+  function logout() {
+    location.reload(); // Simplest way to reset the app state
+  }
+</script>
+
+</body>
+</html>

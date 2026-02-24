@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collection Album</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #87CEEB;
+            font-family: 'Fredoka One', cursive;
+            margin: 0;
+            padding: 40px 20px;
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            background-color: white;
+            color: purple;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 4px solid #222;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            color: white;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .album-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1400px;
+            padding: 20px;
+        }
+
+        @keyframes floatAlbum {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 180px;
+            height: 180px;
+            perspective: 1000px;
+            animation: floatAlbum 4s ease-in-out infinite;
+        }
+
+        .flip-card:nth-child(even) { animation-delay: 0.7s; }
+        .flip-card:nth-child(3n) { animation-delay: 1.5s; }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        @keyframes popSquare {
+            0% { transform: scale(1) rotateY(var(--rot)); }
+            50% { transform: scale(1.2) rotateY(var(--rot)); }
+            100% { transform: scale(1) rotateY(var(--rot)); }
+        }
+
+        .popping {
+            animation: popSquare 0.4s ease-out;
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            border: 4px solid white;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .flip-card-back {
+            background-color: #ffcc00;
+            color: #333;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border: 4px solid #222;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .back-link {
+            margin-top: 50px;
+            background: #ff4500;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 20px;
+            border: 3px solid #222;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: #ff6347;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1><ins>ꫂ❁Collection Albumꫂ❁</ins></h1>
+    <div class="divider">──── ୨୧ ──────── ୨୧ ──────── ୨୧ ────</div>
+
+    <div class="album-grid">
+
+        <!-- ALL YOUR IMAGES LINKED -->
+
+        <!-- 13 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\13.jpg">
+                </div>
+                <div class="flip-card-back">Collection ✨</div>
+            </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\14.jpg">
+                </div>
+                <div class="flip-card-back">Favorites 💖</div>
+            </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\15.jpg">
+                </div>
+                <div class="flip-card-back">Aesthetic 🌸</div>
+            </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\16.jpg">
+                </div>
+                <div class="flip-card-back">My Style 💕</div>
+            </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\7.jpg">
+                </div>
+                <div class="flip-card-back">Fun 🎀</div>
+            </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\8.jpg">
+                </div>
+                <div class="flip-card-back">Moments 🌷</div>
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\5.jpg">
+                </div>
+                <div class="flip-card-back">Memories 📸</div>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\6.jpg">
+                </div>
+                <div class="flip-card-back">Sweet 💫</div>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\10.jpg">
+                </div>
+                <div class="flip-card-back">Special ✨</div>
+            </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\2.jpg">
+                </div>
+                <div class="flip-card-back">Cute 🎀</div>
+            </div>
+        </div>
+
+        <!-- 1 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\1.jpg">
+                </div>
+                <div class="flip-card-back">Happy 🌸</div>
+            </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\4.jpg">
+                </div>
+                <div class="flip-card-back">Moments 💕</div>
+            </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\11.jpg">
+                </div>
+                <div class="flip-card-back">Vibes 🌷</div>
+            </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="flip-card" onclick="popAndFlip(this)">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="C:\Users\Linnaeus\Documents\CARBONEL_LINNAEUS\3rd Quarter\Portfolio Website\collection\12.jpg">
+                </div>
+                <div class="flip-card-back">Always 💖</div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="collection.html" class="back-link">Back</a>
+
+    <script>
+        function popAndFlip(card) {
+            const inner = card.querySelector('.flip-card-inner');
+            inner.classList.remove('popping');
+            void inner.offsetWidth;
+
+            const isFlipped = inner.classList.contains('is-flipped');
+            inner.style.setProperty('--rot', isFlipped ? '180deg' : '0deg');
+
+            inner.classList.add('popping');
+            inner.classList.toggle('is-flipped');
+        }
+    </script>
+
+</body>
+</html>

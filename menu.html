@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peanuts Menu - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #87CEEB; /* Sky Blue */
+            font-family: 'Fredoka One', cursive;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .menu-card {
+            background: white;
+            width: 450px;
+            padding: 40px;
+            border-radius: 30px;
+            border: 4px solid #222;
+            text-align: center;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.1);
+        }
+
+        .snoopy-float {
+            width: 80px;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h2 { color: #ff4500; margin-bottom: 5px; }
+        p { color: #555; margin-bottom: 25px; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .menu-item {
+            text-decoration: none;
+            color: #222;
+            background: #fdfdfd;
+            padding: 20px;
+            border-radius: 20px;
+            border: 3px solid #ffcc00; /* Woodstock Yellow */
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-item span { font-size: 30px; margin-bottom: 5px; }
+
+        .menu-item:hover {
+            transform: scale(1.05);
+            background: #fffdf5;
+            border-color: #ff4500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .logout-btn {
+            margin-top: 30px;
+            display: inline-block;
+            color: #ff4500;
+            text-decoration: none;
+            font-size: 14px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .logout-btn:hover { border-bottom: 2px solid #ff4500; }
+    </style>
+</head>
+<body>
+
+    <div class="menu-card">
+        <img src="snoopyy.png" class="snoopy-float" alt="Snoopy">
+        <h2>Hi, <span id="userName">Anne</span>!</h2>
+        <p>Pick a folder to explore Anne's world:</p>
+
+        <div class="grid-container">
+            <a href="personal.html" class="menu-item">
+                <span>👤</span>
+                <div>Personal</div>
+            </a>
+            <a href="education.html" class="menu-item">
+                <span>📚</span>
+                <div>Educational</div>
+            </a>
+            <a href="collection.html" class="menu-item">
+                <span>🎨</span>
+                <div>Collection</div>
+            </a>
+            <a href="family.html" class="menu-item">
+                <span>🏠</span>
+                <div>Family</div>
+            </a>
+        </div>
+
+        <a href="login.html" class="logout-btn">← Logout and go back</a>
+    </div>
+
+    <script>
+        // Retrieve the name from local storage if you set it during login
+        const savedName = localStorage.getItem("currentUser") || "Anne";
+        document.getElementById("userName").innerText = savedName;
+    </script>
+
+</body>
+</html>
